@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, EventEmitter } from '@angular/core'
 
 @Component({
   selector: 'event-thumbnail',
@@ -13,16 +13,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
         <span>City: {{event.location.city}}</span>
         <span>Country: {{event.location.country}}</span>
       </div>
-      <button class="btn btn-primary" (click)="handleClickMe()">Click Me!</button>
 </div>
   `
 })
 
 export class EventThumbnailComponent {
   @Input() event:any  // The Input decorator tells Angular that the event variable will be passed in from another component
-  @Output() eventClick = new EventEmitter()
+  someProperty:any = "some value in string"
 
-  handleClickMe() {
-    this.eventClick.emit('foo');
+  logFoo() {
+    console.log('foo');
   }
 }

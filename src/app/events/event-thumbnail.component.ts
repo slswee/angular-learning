@@ -3,23 +3,34 @@ import { Component, Input, EventEmitter } from '@angular/core'
 @Component({
   selector: 'event-thumbnail',
   template: `
-<div>
-    <h2>{{event.name}}</h2>
-    <div>Date: {{event.date}}</div>
-    <div>Time: {{event.time}}</div>
+<div class="well hoverwell thumbnail">
+    <h2>{{event?.name}}</h2>
+    <div>Date: {{event?.date}}</div>
+    <div [ngSwitch]="event?.time">Time: {{event.time}}
+      <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+      <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+      <span *ngSwitchDefault>(Normal Start)</span>
+    </div>
     <div>Price: \${{event.price}}</div>
-      <div>
-        <span>Address: {{event.location.address}}</span>
-        <span>City: {{event.location.city}}</span>
+      <div *ngIf="event?.location">
+        <span>Location: {{event?.location.address}}</span>
+        <span class="pad-left">City: {{event.location.city}}</span>
         <span>Country: {{event.location.country}}</span>
       </div>
+      <div *ngIf="event?.onlineUrl">
+        Online Url: {{event?.onlineUrl}}
+      </div>
 </div>
-  `
+  `,
+  styles: [`
+    .thumbnail { min-height: 210px; }
+    .pad-left: { margin-left: 10px; }
+    .well div { color: #bbb; }
+  `]
 })
 
 export class EventThumbnailComponent {
   @Input() event:any  // The Input decorator tells Angular that the event variable will be passed in from another component
-  someProperty:any = "some value in string"
 
   logFoo() {
     console.log('foo');

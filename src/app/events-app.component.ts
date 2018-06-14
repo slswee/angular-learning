@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   // templateUrl: './app.component.html',
   template: `
   <nav-bar></nav-bar>
-  <events-list></events-list>
+  <router-outlet></router-outlet>
   `
   // styleUrls: ['./app.component.css']
 })

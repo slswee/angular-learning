@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
-import { EventsListComponent } from './events/events-list.component';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { CreateEventComponent } from './events/shared/create-event.component';
+import {
+  EventsListComponent,
+  EventDetailsComponent,
+  CreateEventComponent,
+  EventRouteActivator,
+  EventListResolver
+} from './events/index';
 import { Error404Component } from './error/404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
-import { EventListResolver } from './events/events-list-resolver.service';
 
 export const appRoutes: Routes = [
   // this path has to go first, otherwise Angular can't differenticate between events/new and events/:id

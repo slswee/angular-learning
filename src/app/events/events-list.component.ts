@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event.service';
 import { ToastrService } from '../common/toastr.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   template:
@@ -18,14 +19,16 @@ import { ToastrService } from '../common/toastr.service';
   // to pass the event information, 'event1' matches a member in this component
 })
 export class EventsListComponent implements OnInit {
-  events: any[];
+  events: any;
   // inject event list service
-  constructor(private eventService: EventService, private toastr: ToastrService) {
+  constructor(private eventService: EventService, private toastr: ToastrService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    // we don't need to subscribe anymore
+    // this.eventService.getEvents().subscribe(events => { this.events = events; });
+    this.events = this.route.snapshot.data['events'];
   }
 
   handleThumbnailClick(eventName) {

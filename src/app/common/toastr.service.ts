@@ -14,6 +14,6 @@ export class ToastrService {
     toastr.warning(message, title);
   }
   error(message: string, title?: string) {
-    toastr.suerrorcess(message, title);
+    toastr.error(message, title);
   }
 }

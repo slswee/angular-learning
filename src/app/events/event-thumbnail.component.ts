@@ -1,9 +1,10 @@
-import { Component, Input, EventEmitter } from '@angular/core'
+import { Component, Input, EventEmitter } from '@angular/core';
+import { IEvent } from './shared/index';
 
 @Component({
   selector: 'event-thumbnail',
   template: `
-<div class="well hoverwell thumbnail">
+<div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
     <h2>{{event?.name}}</h2>
     <div>Date: {{event?.date}}</div>
     <div [ngStyle]="getStartTimeStyle()" [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">Time: {{event.time}}
@@ -32,7 +33,7 @@ import { Component, Input, EventEmitter } from '@angular/core'
 })
 
 export class EventThumbnailComponent {
-  @Input() event:any;  // The Input decorator tells Angular that the event variable will be passed in from another component
+  @Input() event: IEvent;  // The Input decorator tells Angular that the event variable will be passed in from another component
   getStartTimeClass() {
     // const isEarlyStart = this.event && this.event.time === '8:00 am';
     // return {green: isEarlyStart, bold: isEarlyStart};

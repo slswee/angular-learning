@@ -1,25 +1,32 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { EventService } from './shared/index';
 
 @Component({
-  template: `
-    <h1>New Event</h1>
-    <hr>
-    <div class="col-md-6">
-      <h3>[Create Event Form will go here]</h3>
-      <br/>
-      <br/>
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
-    </div>
-  `
+  templateUrl: 'create-event.component.html',
+  styles: [`
+  em {float: right; color: #05C65; padding-left: 10px;}
+  .error input {background-color:#E3C3C5;}
+  .error ::-webkit-input-placeholder { color: #999; }
+  .error ::-moz-placeholder { color: #999; }
+  .error :-moz-placeholder { color: #999; }
+  .error :ms-input-placeholder { color: #999; }
+`]
 })
 
 export class CreateEventComponent {
-  isDirty: boolean = true;
-  constructor(private router: Router) {
+  newEvent;
+  newEventForm;
+  isDirty = true;
+  constructor(private router: Router, private eventService: EventService) {
 
   }
+
+  saveEvent(formValues) {
+    this.eventService.saveEvent(formValues);
+  }
+
   cancel() {
     // inject Angular's router service
     // call navigate() on the router and inject the path to navigate to

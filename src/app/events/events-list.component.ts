@@ -20,7 +20,7 @@ import { IEvent } from './shared/index';
   // to pass the event information, 'event1' matches a member in this component
 })
 export class EventsListComponent implements OnInit {
-  events: any;
+  events: IEvent[];
   // inject event list service
   constructor(private eventService: EventService, private toastr: ToastrService, private route: ActivatedRoute) {
 

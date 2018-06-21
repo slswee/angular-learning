@@ -10,6 +10,7 @@ export class EventListResolver implements Resolve<any> {
   // in the resolve method, we typically make an asynchronize call, and when it returns, we'll return that data
   resolve() {
     // getEvents() returns an observable. calling map() on that observable gives us access to the events that are passed in on that stream
+    // subscribe returns an subscription, not an observable. that's why we use map here to return the observable
     return this.eventService.getEvents().map(events => events);
   }
 }
